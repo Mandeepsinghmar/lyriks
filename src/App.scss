@@ -1,9 +1,6 @@
-.main-home-container{
-  height: 100vh;
-}
+
 .home-music-container {
   display: flex;
-  height: 80vh;
   .sidebar-home {
     flex: 0.2;
   }
@@ -53,9 +50,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .home-music-container{
-    height: 66vh !important;
-  }
+
 
   .navbar-container {
     height: unset;
@@ -115,11 +110,7 @@
     min-width: 400px !important;
   }
 }
-@media screen and (max-width:361px){
-  .home-music-container{
-    height: 56vh !important;
-  }
-}
+
 @media screen and (max-width:500px){
   .ReactModal__Content{
     top: 30px !important;
@@ -138,8 +129,10 @@ margin: 0 auto;
 @media screen and (max-width: 980px) {
   .footer-player{
     position: fixed;
-    bottom: 67px;
+    bottom: 68px;
+    width: 100%;
   }
+
   .bottom-navigation {
     display: flex;
   
@@ -154,15 +147,12 @@ margin: 0 auto;
   }
 
   .container {
-    height: 70vh;
     overflow-x: hidden;
   }
 .home-music-container{
-  height: 71vh;
+margin-bottom: 150px !important;
 }
-  .music-card-container {
-    height: 70vh;
-  }
+
 
   .list-music-Container {
     height: 70vh;
