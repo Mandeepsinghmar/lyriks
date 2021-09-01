@@ -136,7 +136,10 @@ margin: 0 auto;
 }
 
 @media screen and (max-width: 980px) {
-
+  .footer-player{
+    position: fixed;
+    bottom: 75px;
+  }
   .bottom-navigation {
     display: flex;
   
