@@ -1,0 +1,38 @@
+.card-container {
+  h1 {
+    color: #000814;
+    margin-left: 10px;
+    font-size: 1.7rem;
+  }
+  .artist-card {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    .artist-image-container {
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .artist-card-desc {
+      font-size: 1rem;
+      color: #000814;
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  .artist-card:hover {
+    background-color: black;
+    .artist-card-desc {
+      h1 {
+        color: white !important;
+      }
+      p {
+        color: white !important;
+      }
+    }
+  }
+}
+
+

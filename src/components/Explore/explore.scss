@@ -1,0 +1,83 @@
+// music card container
+.Container {
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  .app__dropdown {
+    border-radius: 35px;
+    border: 1px solid #3d3d3d;
+    width: 130px;
+    margin-left: 18px;
+    color: #edf6f9;
+    outline: none;
+    .app__select {
+      color: #edf6f9 !important;
+      height: 40px;
+    }
+  }
+  .MuiSelect-icon {
+    color: #edf6f9;
+  }
+}
+.list-container {
+  // display: flex;
+  // gap: 10px;
+  // overflow-x: auto;
+  padding: 10px 15px;
+
+  .list {
+    border: 1px solid #3d3d3d;
+    outline: none;
+    border-radius: 20px;
+    padding: 8px 0px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 130px;
+
+    &:hover {
+      background: #2facfe;
+    }
+  }
+}
+.list-container::-webkit-scrollbar-track {
+  display: none !important;
+}
+.list-container::-webkit-scrollbar-thumb {
+  display: none !important;
+}
+.music-card-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  padding: 20px 60px 10px 60px;
+}
+
+.MuiMenu-paper {
+  background: #000814 !important;
+  color: #edf6f9 !important;
+  margin-top: 80px;
+}
+.MuiPaper-root {
+  top: 100px !important;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: 18px !important;
+}
+
+.MuiMenuItem-root:hover {
+  background: #2facfe !important;
+}
+.disable {
+  display: none;
+}
+
+.music-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+

@@ -1,0 +1,50 @@
+.aside-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80vh;
+  overflow: auto;
+  border-right: 1px solid #3d3d3d;
+  .p1 {
+    border-bottom: 1px solid #3d3d3d;
+    padding: 15px;
+    font-weight: bolder;
+    user-select: none;
+  }
+  .lib-sub {
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    .MuiButton-startIcon {
+      color: #fff;
+    }
+  }
+
+  .lib-sub:hover {
+    background-color: #2facfe;
+  }
+
+  .aside-bar-container {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+  }
+  .playlist {
+    flex: 1;
+    .p1 {
+      border-top: 1px solid #3d3d3d;
+    }
+    .lib-sub:hover {
+      background-color: #2facfe;
+    }
+  }
+}
+
+
+.active {
+  background-color: #2facfe !important;
+}

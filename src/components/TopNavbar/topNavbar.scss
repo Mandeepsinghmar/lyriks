@@ -1,0 +1,102 @@
+.navbar-container {
+  height: 10vh;
+
+  border-bottom: 1px solid #3d3d3d;
+  padding: 3px 20px;
+
+  .nav-item {
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 40px;
+    .navbar-brand {
+      font-family: cursive;
+      font-size: 1.9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2facfe;
+
+      .MuiSvgIcon-root {
+        font-size: 1.9rem;
+      }
+    }
+    .search-container {
+      width: 352px;
+      .search-bar {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .search-icon {
+          color: #abe4f7;
+          position: absolute;
+          top: 32px;
+
+          z-index: 10;
+          padding-left: 10px;
+        }
+        .search-input {
+          position: relative;
+          width: 100%;
+          max-width: 400px;
+          padding: 8px;
+          border: none;
+          outline: none;
+          font-size: 1rem;
+          border-radius: 3px;
+        }
+      }
+      .search-result {
+        display: none;
+        background-color: white;
+        width: 100%;
+        max-width: 348px;
+        right: 22px;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+.card-container {
+  h1 {
+    color: #000814;
+    margin-left: 10px;
+    font-size: 1.7rem;
+  }
+  .artist-card {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    .artist-image-container {
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .artist-card-desc {
+      font-size: 1rem;
+      color: #000814;
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  .artist-card:hover {
+    background-color: black;
+    .artist-card-desc {
+      h1 {
+        color: white !important;
+      }
+      p {
+        color: white !important;
+      }
+    }
+  }
+}
+
+

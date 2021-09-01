@@ -1,0 +1,77 @@
+.list-music-card-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  padding: 20px 60px 10px 60px;
+}
+.list-music-card {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  gap: 30px;
+  .list-music-card-cover {
+    position: relative;
+    display: flex;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .list-music-card-desc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    margin-left: 12px;
+    .list-song-name {
+      font-size: 1.5rem;
+      color: #edf6f9;
+      font-weight: 800;
+      margin-top: 3px;
+      margin-bottom: 5px;
+    }
+    .list-song-artist {
+      font-size: 0.9rem;
+      color: #abe4f7;
+    }
+    .list-song-name:hover {
+      color: #2facfe;
+    }
+    .list-song-artist:hover {
+      color: #2facfe;
+    }
+    .list-play-circle {
+      display: none;
+      color: #fff;
+      .MuiSvgIcon-root {
+        display: none;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .list-music-card-cover:hover {
+    cursor: pointer;
+
+    img {
+      filter: brightness(0.34);
+    }
+  }
+}
+.list-music-card:hover {
+  background: black;
+  .list-music-card-desc {
+    .list-play-circle {
+      display: block;
+      .MuiSvgIcon-root {
+        display: block;
+        font-size: 2rem;
+      }
+    }
+  }
+}
+.list-music-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

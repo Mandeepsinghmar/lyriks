@@ -1,0 +1,86 @@
+.bottom-navigation {
+  height: 10vh;
+  display: none;
+  border-top: 1px solid #3d3d3d;
+
+
+  .bottom-navigation-link {
+    position: relative;
+    width: 100%;
+    background-color: #000814;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &hover {
+      background: #9c1de7;
+    }
+
+    .BottomNavAction {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: #edf6f9;
+
+      .icon {
+        margin-bottom: 10px;
+      }
+    }
+
+    .label {
+      z-index: 1000;
+      position: absolute;
+      bottom: 5px;
+      color: #edf6f9;
+    }
+
+    .active + .label {
+      display: block;
+    }
+  }
+
+  .more {
+    padding-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    .icon {
+      font-weight: 900;
+    }
+  }
+  .more-items {
+    position: absolute;
+    right: 20px;
+    bottom: 72px;
+    background: white;
+
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    .item {
+      display: flex;
+      gap: 10px;
+      padding: 6px 20px;
+
+      font-size: 1.1rem;
+      color: black;
+    }
+    .item:hover {
+      background-color: #9c1de7;
+      color: white;
+    }
+  }
+}
+
+.active {
+  color: #edf6f9 !important;
+  background: #2facfe !important;
+}
