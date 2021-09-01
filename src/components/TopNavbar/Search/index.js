@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import './search.scss';
