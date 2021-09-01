@@ -168,21 +168,19 @@ function MusicPlayer({ music, isPlaying, setPlayPauseClicked }) {
           <track kind="captions" />
         </audio>
         {isPlaying ? (
-          <button
-            type="button"
+          <Button
             onClick={() => setPlayPauseClicked(!isPlaying)}
             style={{ cursor: 'pointer', color: '#edf6f9' }}
           >
             <PauseIcon fontSize="large" />
-          </button>
+          </Button>
         ) : (
-          <button
-            type="button"
+          <Button
             onClick={() => setPlayPauseClicked(!isPlaying)}
             style={{ cursor: 'pointer', color: '#edf6f9' }}
           >
             <PlayArrowIcon fontSize="large" />
-          </button>
+          </Button>
         )}
 
         <Button
