@@ -1,1 +1,1 @@
-## Musics - Find the music you love
+## Lyriks - Find the music you love
