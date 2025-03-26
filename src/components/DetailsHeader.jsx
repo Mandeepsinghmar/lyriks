@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const DetailsHeader = ({ artistId, artistData }) => {
+const DetailsHeader = ({ artistId, artistData, songData }) => {
   console.log(artistData);
   return (
     <div className='relative w-full flex flex-col'>
@@ -10,30 +10,31 @@ const DetailsHeader = ({ artistId, artistData }) => {
       <div className='absolute inset-0 flex items-center'>
         <img
           alt='profile'
-          src={artistData?.avatar}
+          src={artistId ? artistData?.avatar : songData?.images.coverart}
           className='sm:w-48 w-28 sm:h-48 h-28 rounded-full object-cover border-2 shadow-xl shadow-black'
         />
 
         <div className='ml-5'>
           <p className='font-bold sm:text-3xl text-xl text-white'>
-            {artistData?.attributes?.name}
+            {artistId ? artistData?.attributes?.name : songData?.title}
           </p>
-          <p className=' mt-2 text-sm text-gray-300 leading-relaxed'>
+
+          <p className=' mt-3 text-sm text-gray-300 leading-relaxed'>
             {artistData?.attributes?.artistBio}
           </p>
-          {/* {!artistId && (
-            <Link to={`/artists/${songData?.relationships.artists.data[0].id}`}>
+          {!artistId && (
+            <Link to={`/artists/${songData?.artists[0].adamid}`}>
               <p className='text-base text-gray-400 mt-2'>
-                {songData?.attributes.artistName}
+                {songData?.subtitle}
               </p>
             </Link>
-          )} */}
+          )}
 
-          {/* <p className='text-base text-gray-400 mt-2'>
+          <p className='text-base text-gray-400 mt-2'>
             {artistId
-              ? artistData?.artists[artistId].attributes?.genreNames[0]
+              ? artistData?.attributes?.genreNames[0]
               : songData?.genres?.primary}
-          </p> */}
+          </p>
         </div>
       </div>
 
