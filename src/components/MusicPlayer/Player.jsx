@@ -28,7 +28,6 @@ const Player = ({
   useEffect(() => {
     ref.current.currentTime = seekTime;
   }, [seekTime]);
-  console.log(activeSong);
   return (
     <audio
       src={

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -58,8 +58,21 @@ const TopChartCard = ({
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetTopChartsQuery();
+  const [shouldFetch, setShouldFetch] = useState(false);
+  const { data, isLoading, error } = useGetTopChartsQuery(undefined, {
+    skip: !shouldFetch, // This will skip the query until shouldFetch is true
+  });
   const divRef = useRef(null);
+
+  useEffect(() => {
+    // Set a timeout to trigger the query after 3 seconds
+    const queryTimeout = setTimeout(() => {
+      setShouldFetch(true); // This will trigger the query
+    }, 1000); // 3000 milliseconds = 3 seconds
+
+    // Cleanup function to clear the timeout if component unmounts
+    return () => clearTimeout(queryTimeout);
+  }, []);
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });

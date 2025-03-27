@@ -14,7 +14,7 @@ import {
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
-  console.log(activeSong);
+
   return (
     <div className='relative flex'>
       <Sidebar />
@@ -34,7 +34,7 @@ const App = () => {
             </Routes>
           </div>
           <div className='xl:sticky relative top-0 h-fit'>
-            {/* <TopPlay /> */}
+            <TopPlay />
           </div>
         </div>
       </div>
