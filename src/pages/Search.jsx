@@ -31,6 +31,7 @@ const Search = () => {
             activeSong={activeSong}
             data={data}
             i={i}
+            isSearch
           />
         ))}
       </div>

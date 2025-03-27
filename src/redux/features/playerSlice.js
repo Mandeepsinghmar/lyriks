@@ -14,7 +14,12 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     setActiveSong: (state, action) => {
-      state.activeSong = action.payload.song;
+      if (action.payload.song?.hub?.actions[1].uri) {
+        // state.activeSong = action.payload.song.hub?.actions[1].uri;
+        state.activeSong = action.payload.song;
+      } else if (action.payload.song?.previews[0].url) {
+        state.activeSong = action.payload.song;
+      }
 
       state.currentSongs = action.payload.data;
       state.currentIndex = action.payload.i;
