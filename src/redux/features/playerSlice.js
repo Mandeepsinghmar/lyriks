@@ -19,16 +19,25 @@ const playerSlice = createSlice({
         state.activeSong = action.payload.song;
       } else if (action.payload.song?.previews[0].url) {
         state.activeSong = action.payload.song;
+      } else {
+        state.activeSong = action.payload.song;
       }
 
-      state.currentSongs = action.payload.data;
+      if (action.payload?.data?.tracks?.hits) {
+        state.currentSongs = action.payload.data?.tracks.hits;
+      } else {
+        state.currentSongs = action.payload.data;
+      }
       state.currentIndex = action.payload.i;
+
       state.isActive = true;
     },
 
     nextSong: (state, action) => {
       if (state.currentSongs[action.payload]?.track) {
         state.activeSong = state.currentSongs[action.payload]?.track;
+      } else if (state.currentSongs[action.payload]?.attributes) {
+        state.activeSong = state.currentSongs[action.payload].attributes;
       } else {
         state.activeSong = state.currentSongs[action.payload];
       }
@@ -40,6 +49,8 @@ const playerSlice = createSlice({
     prevSong: (state, action) => {
       if (state.currentSongs[action.payload]?.track) {
         state.activeSong = state.currentSongs[action.payload]?.track;
+      } else if (state.currentSongs[action.payload]?.attributes) {
+        state.activeSong = state.currentSongs[action.payload].attributes;
       } else {
         state.activeSong = state.currentSongs[action.payload];
       }

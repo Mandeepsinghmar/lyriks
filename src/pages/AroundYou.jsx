@@ -9,7 +9,9 @@ const CountryTracks = () => {
   const [country, setCountry] = useState('');
   const [loading, setLoading] = useState(true);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetSongsByCountryQuery(country);
+  const { data, isFetching, error } = useGetSongsByCountryQuery(country, {
+    skip: !country,
+  });
 
   useEffect(() => {
     axios
@@ -23,8 +25,7 @@ const CountryTracks = () => {
       .finally(() => setLoading(false));
   }, [country]);
 
-  if (isFetching && loading)
-    return <Loader title='Loading Songs around you...' />;
+  if (!data) return <Loader title='Loading Songs around you...' />;
 
   if (error && country !== '') return <Error />;
   return (

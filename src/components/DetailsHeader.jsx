@@ -18,9 +18,6 @@ const DetailsHeader = ({ artistId, artistData, songData }) => {
             {artistId ? artistData?.attributes?.name : songData?.title}
           </p>
 
-          <p className=' mt-3 text-sm text-gray-300 leading-relaxed'>
-            {artistData?.attributes?.artistBio}
-          </p>
           {!artistId && (
             <Link to={`/artists/${songData?.artists[0].adamid}`}>
               <p className='text-base text-gray-400 mt-2'>
@@ -33,6 +30,9 @@ const DetailsHeader = ({ artistId, artistData, songData }) => {
             {artistId
               ? artistData?.attributes?.genreNames[0]
               : songData?.genres?.primary}
+          </p>
+          <p className=' mt-3 text-sm text-gray-300 leading-relaxed'>
+            {artistData?.attributes?.artistBio}
           </p>
         </div>
       </div>

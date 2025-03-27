@@ -11,9 +11,15 @@ const SongCard = ({ song, isPlaying, activeSong, data, i, isSearch }) => {
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
-
+  // console.log(song, activeSong);
   const handlePlayClick = () => {
-    dispatch(setActiveSong({ song: song?.attributes || song, data, i }));
+    dispatch(
+      setActiveSong({
+        song: song?.attributes ? song.attributes : song,
+        data,
+        i,
+      })
+    );
     dispatch(playPause(true));
   };
   return (
@@ -21,7 +27,8 @@ const SongCard = ({ song, isPlaying, activeSong, data, i, isSearch }) => {
       <div className='relative w-full h-56 group'>
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            activeSong?.title === (song?.attributes?.name || song?.title)
+            (activeSong?.title || activeSong?.name) ===
+            (song?.attributes?.name || song?.title)
               ? 'flex bg-black bg-opacity-70'
               : 'hidden'
           }`}
@@ -60,7 +67,9 @@ const SongCard = ({ song, isPlaying, activeSong, data, i, isSearch }) => {
               {song?.attributes?.artistName}
             </Link>
           ) : (
-            <Link to={song ? `/artists/${song?.subTitle}` : '/top-artists'}>
+            <Link
+              to={song ? `/artists/${song?.artists[0].adamid}` : '/top-artists'}
+            >
               {song?.subtitle}
             </Link>
           )}

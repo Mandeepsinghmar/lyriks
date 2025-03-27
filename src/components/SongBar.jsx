@@ -16,7 +16,10 @@ const SongBar = ({
 }) => (
   <div
     className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
-      activeSong?.title === song?.title ? 'bg-[#4c426e]' : 'bg-transparent'
+      (activeSong?.title || activeSong?.name) ===
+      (song?.attributes?.name || song?.title)
+        ? 'bg-[#4c426e]'
+        : 'bg-transparent'
     } py-2 p-4 rounded-lg cursor-pointer mb-2`}
   >
     <h3 className='font-bold text-base text-white mr-3'>{i + 1}.</h3>
@@ -43,19 +46,20 @@ const SongBar = ({
           </p>
         )}
         <p className='text-base text-gray-300 mt-1'>
-          {artistId ? song?.attributes?.albumName : song?.subtitle}
+          {artistId ? song?.attributes?.artistName : song?.subtitle}
         </p>
       </div>
     </div>
-    {!artistId ? (
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePause={handlePauseClick}
-        handlePlay={() => handlePlayClick(song, i)}
-      />
-    ) : null}
+    {/* {!artistId ? ( */}
+    <PlayPause
+      isPlaying={isPlaying}
+      activeSong={activeSong}
+      song={song.attributes || song}
+      handlePause={handlePauseClick}
+      // handlePlay={handlePlayClick}
+      handlePlay={() => handlePlayClick(song, i)}
+    />
+    {/* ) : null} */}
   </div>
 );
 
