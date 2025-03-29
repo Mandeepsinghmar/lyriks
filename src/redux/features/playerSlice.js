@@ -14,14 +14,14 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     setActiveSong: (state, action) => {
-      if (action.payload.song?.hub?.actions[1].uri) {
-        // state.activeSong = action.payload.song.hub?.actions[1].uri;
-        state.activeSong = action.payload.song;
-      } else if (action.payload.song?.previews[0].url) {
-        state.activeSong = action.payload.song;
-      } else {
-        state.activeSong = action.payload.song;
-      }
+      // if (action.payload.song?.hub?.actions[1].uri) {
+      //   // state.activeSong = action.payload.song.hub?.actions[1].uri;
+      //   state.activeSong = action.payload.song;
+      // } else if (action.payload.song?.previews[0].url) {
+      //   state.activeSong = action.payload.song;
+      // } else {
+      state.activeSong = action.payload.song;
+      // }
 
       if (action.payload?.data?.tracks?.hits) {
         state.currentSongs = action.payload.data?.tracks.hits;

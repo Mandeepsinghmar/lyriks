@@ -25,7 +25,7 @@ const CountryTracks = () => {
       .finally(() => setLoading(false));
   }, [country]);
 
-  if (!data) return <Loader title='Loading Songs around you...' />;
+  if (!data && !error) return <Loader title='Loading Songs around you...' />;
 
   if (error && country !== '') return <Error />;
   return (
