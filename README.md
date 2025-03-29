@@ -13,12 +13,13 @@ Lyriks is a modern music streaming web application that allows users to explore 
 
 ## Tech Stack
 - **Frontend:** React.js, Redux, React Router
-- **UI Components:** Material-UI
-- **State Management:** Redux, Redux Thunk
-- **Styling:** SCSS
+- **Build Tool:** Vite
+- **State Management:** Redux Toolkit
+- **Styling:** TailwindCSS, PostCSS, Autoprefixer
 - **API Handling:** Axios
 - **Routing:** React Router DOM
-- **Miscellaneous:** React Player for media playback, React Modal for popups
+- **UI Components:** Swiper, React Icons
+- **Linting & Code Quality:** ESLint, Airbnb Style Guide
 
 ## Installation
 To run the project locally, follow these steps:
@@ -26,6 +27,7 @@ To run the project locally, follow these steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/Mandeepsinghmar/lyriks.git
+   git checkout main
    cd lyriks
    ```
 
@@ -36,7 +38,7 @@ To run the project locally, follow these steps:
 
 3. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 The app should now be running at `http://localhost:3000/`
@@ -48,16 +50,13 @@ npm run build
 ```
 
 ## Scripts
-- **`npm start`** - Runs the app in development mode.
+- **`npm run dev`** - Runs the app in development mode.
 - **`npm run build`** - Builds the app for production.
-- **`npm run eject`** - Ejects the configuration (use with caution).
-- **`npm run scss`** - Watches SCSS files and compiles them to CSS.
+- **`npm run preview`** - Previews the production build.
 
 ## Contributing
 If you'd like to contribute, feel free to fork the repository and submit a pull request.
 
 ## License
 This project is licensed under the MIT License.
-
-
 
