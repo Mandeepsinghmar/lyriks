@@ -3,7 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { DetailsHeader, Error, Loader, RelatedSongs } from '../components';
 
-import { useGetArtistDetailsQuery } from '../redux/services/shazamCore';
+import {
+  useGetArtistDetailsQuery,
+  useGetArtistTopSongsQuery,
+} from '../redux/services/shazamCore';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
 
 const ArtistDetails = () => {
@@ -16,8 +19,9 @@ const ArtistDetails = () => {
     isFetching: isFetchingArtistDetails,
     error,
   } = useGetArtistDetailsQuery(artistId);
-
-  if (isFetchingArtistDetails)
+  const { data: artistSongs, isFetching: isFetchingArtistSongs } =
+    useGetArtistTopSongsQuery(artistId);
+  if (isFetchingArtistDetails && isFetchingArtistSongs)
     return <Loader title='Loading artist details...' />;
 
   if (error) return <Error />;
@@ -31,7 +35,7 @@ const ArtistDetails = () => {
     dispatch(
       setActiveSong({
         song: song?.attributes ? song.attributes : song,
-        data: Object.values(artistData?.data[0].views['top-songs'].data),
+        data: artistData.data,
         i,
       })
     );
@@ -43,7 +47,7 @@ const ArtistDetails = () => {
       <DetailsHeader artistId={artistId} artistData={artistData.data[0]} />
 
       <RelatedSongs
-        data={Object.values(artistData?.data[0].views['top-songs'].data)}
+        data={artistSongs.data}
         artistId={artistId}
         isPlaying={isPlaying}
         activeSong={activeSong}
