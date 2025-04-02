@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useEffect } from 'react';
 
 const Player = ({
@@ -28,8 +27,8 @@ const Player = ({
   useEffect(() => {
     ref.current.currentTime = seekTime;
   }, [seekTime]);
-  console.log(activeSong, activeSong?.hub?.actions[1].uri);
   return (
+    // eslint-disable-next-line jsx-a11y/media-has-caption
     <audio
       src={
         activeSong?.hub?.actions[1].uri

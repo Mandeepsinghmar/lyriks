@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable import/no-unresolved */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,13 +9,11 @@ import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
 import {
   useGetSongsBySearchQuery,
-  useGetTopChartsQuery,
 } from '../redux/services/shazamCore';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import Loader from './Loader';
-import Error from './Error';
 
 const TopChartCard = ({
   song,
@@ -62,7 +59,6 @@ const TopChartCard = ({
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const [shouldFetch, setShouldFetch] = useState(false);
   const { data, isLoading, error } = useGetSongsBySearchQuery('hindi songs');
 
   const divRef = useRef(null);
@@ -90,6 +86,7 @@ const TopPlay = () => {
   if (!data && !error) return <Loader title="Loading Top Charts..." />;
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {data?.tracks?.hits?.length && (
         <div
@@ -109,7 +106,7 @@ const TopPlay = () => {
             <div className="mt-4 flex flex-col gap-1">
               {data?.tracks?.hits?.map((song, i) => (
                 <TopChartCard
-                  key={song.track.id}
+                  key={song.track.key}
                   song={song.track}
                   i={i}
                   isPlaying={isPlaying}

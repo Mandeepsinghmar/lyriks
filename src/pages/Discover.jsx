@@ -18,7 +18,7 @@ const Discover = () => {
 
   if (error) return <Error />;
 
-  const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
+  const genreTitle = genreListId ? genres.find(({ value }) => value === genreListId)?.title : 'POP';
 
   return (
     <div className="flex flex-col">

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { Error, Loader, SongCard } from '../components';
 import {
   useGetSongsBySearchQuery,
-  useGetTopChartsQuery,
 } from '../redux/services/shazamCore';
 
 const TopCharts = () => {

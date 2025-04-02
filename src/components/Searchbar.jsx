@@ -11,6 +11,7 @@ const Searchbar = () => {
     e.preventDefault();
     if (searchTerm.length >= 2) {
       navigate(`/search/${searchTerm}`);
+      setSearchTerm('');
     }
   };
 

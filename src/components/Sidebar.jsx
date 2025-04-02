@@ -4,7 +4,6 @@ import {
   HiOutlineHashtag,
   HiOutlineHome,
   HiOutlineMenu,
-  HiOutlinePhotograph,
   HiOutlineUserGroup,
 } from 'react-icons/hi';
 import { RiCloseLine } from 'react-icons/ri';

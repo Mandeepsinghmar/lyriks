@@ -18,7 +18,7 @@ export const shazamCoreApi = createApi({
       query: (offset) => `/search?term=rock&limit=50&offset=${offset}`,
     }),
     getSongsByGenre: builder.query({
-      query: (genre) => `/search?term=${genre}&limit=50`,
+      query: (genre) => `/search?term=${genre}`,
     }),
     getSongsByCountry: builder.query({
       query: (countryCode) => `/search?term=${countryCode}&limit=50`,
