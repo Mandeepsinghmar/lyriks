@@ -9,6 +9,7 @@ import { setActiveSong, playPause } from '../redux/features/playerSlice';
 import {
   useGetSongDetailsQuery,
   useGetSongDetailsV1Query,
+  useGetSongIdQuery,
   useGetSongRelatedQuery,
 } from '../redux/services/shazamCore';
 
@@ -19,45 +20,26 @@ const SongDetails = () => {
   const [shouldFetch, setShouldFetch] = useState(false);
   const [shouldFetchAnother, setShouldFetchAnother] = useState(false);
 
-  const { data: songData } = useGetSongDetailsQuery({ songid });
-  const { data: realSongData, isFetching: isFetchingSongDetails } =
-    useGetSongDetailsV1Query(
-      {
-        songid: songData?.data?.[0]?.id || songid,
-      },
-      {
-        // Only run the query when we have a valid songid
-        skip: !shouldFetch,
-      }
-    );
-  const {
-    data,
-    isFetching: isFetchinRelatedSongs,
-    error,
-  } = useGetSongRelatedQuery(
-    { songid: songData?.data?.[0]?.id || songid },
-    { skip: !shouldFetchAnother }
+  const { data: songIdData, error } = useGetSongIdQuery({ songid });
+  const { data: songData } = useGetSongDetailsQuery(
+    { songid: songIdData && Object.keys(songIdData?.resources?.songs)[0] },
+    {
+      // Only run the query when we have a valid songid
+      skip: songIdData && !Object.keys(songIdData?.resources?.songs)[0],
+    },
   );
 
-  useEffect(() => {
-    // Set a timeout to trigger the query after 1 seconds
-    const queryTimeout = setTimeout(() => {
-      setShouldFetch(true); // This will trigger the query
-    }, 3000); // 1000 milliseconds = 1 seconds
+  // const {
+  //   data,
+  //   isFetching: isFetchinRelatedSongs,
+  //   error,
+  // } = useGetSongRelatedQuery(
+  //   { songid: songData?.data?.[0]?.id || songid },
+  //   { skip: !shouldFetchAnother }
+  // );
 
-    const queryTimeout2 = setTimeout(() => {
-      setShouldFetchAnother(true); // This will trigger the query
-    }, 6000); // 1000 milliseconds = 1 seconds
-
-    // Cleanup function to clear the timeout if component unmounts
-    return () => {
-      clearTimeout(queryTimeout);
-      clearTimeout(queryTimeout2);
-    };
-  }, [songid]);
-
-  if (isFetchingSongDetails && isFetchinRelatedSongs)
-    return <Loader title='Searching song details' />;
+  // if (isFetchingSongDetails && isFetchinRelatedSongs)
+  //   return <Loader title='Searching song details' />;
 
   if (error) return <Error />;
 
@@ -65,36 +47,35 @@ const SongDetails = () => {
     dispatch(playPause(false));
   };
 
-  const handlePlayClick = (song, i) => {
-    dispatch(
-      setActiveSong({
-        song: song?.attributes ? song.attributes : song,
-        data,
-        i,
-      })
-    );
-    dispatch(playPause(true));
-  };
+  // const handlePlayClick = (song, i) => {
+  //   dispatch(
+  //     setActiveSong({
+  //       song: song?.attributes ? song.attributes : song,
+  //       data,
+  //       i,
+  //     })
+  //   );
+  //   dispatch(playPause(true));
+  // };
 
   return (
-    <div className='flex flex-col'>
+    <div className="flex flex-col">
       <DetailsHeader
         artistId={artistId}
-        songData={realSongData || songData}
+        songData={songData?.data[0]}
         isPlaying={isPlaying}
         activeSong={activeSong}
         handlePauseClick={handlePauseClick}
-        handlePlayClick={handlePlayClick}
+        // handlePlayClick={handlePlayClick}
       />
 
       <div>
-        {songData?.resources?.lyrics &&
-          Object.values(songData.resources.lyrics)[0]?.attributes?.text && (
-            <h2 className='text-white text-3xl font-bold'>Lyrics:</h2>
-          )}
+        {/* {songData?.data[0].attributes.hasLyrics && (
+          <h2 className='text-white text-3xl font-bold'>Lyrics:</h2>
+        )} */}
 
-        <div className='mt-5 mb-10'>
-          {songData?.resources?.lyrics ? (
+        <div className="mt-5 mb-10">
+          {/* {songData?.resources?.lyrics ? (
             Object.values(songData.resources.lyrics)[0]?.attributes?.text ? (
               Object.values(songData.resources.lyrics)[0].attributes.text.map(
                 (line, i) => (
@@ -111,11 +92,11 @@ const SongDetails = () => {
                 Sorry, No lyrics found!
               </p>
             )
-          ) : null}
+          ) : null} */}
         </div>
       </div>
 
-      <RelatedSongs
+      {/* <RelatedSongs
         data={data}
         artistId={artistId}
         isPlaying={isPlaying}
@@ -123,7 +104,7 @@ const SongDetails = () => {
         handlePauseClick={handlePauseClick}
         handlePlayClick={handlePlayClick}
         songDetails
-      />
+      /> */}
     </div>
   );
 };

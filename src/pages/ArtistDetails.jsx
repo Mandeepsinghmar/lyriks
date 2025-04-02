@@ -19,10 +19,8 @@ const ArtistDetails = () => {
     isFetching: isFetchingArtistDetails,
     error,
   } = useGetArtistDetailsQuery(artistId);
-  const { data: artistSongs, isFetching: isFetchingArtistSongs } =
-    useGetArtistTopSongsQuery(artistId);
-  if (isFetchingArtistDetails && isFetchingArtistSongs)
-    return <Loader title='Loading artist details...' />;
+  const { data: artistSongs, isFetching: isFetchingArtistSongs } = useGetArtistTopSongsQuery(artistId);
+  if (isFetchingArtistDetails && isFetchingArtistSongs) return <Loader title="Loading artist details..." />;
 
   if (error) return <Error />;
   const handlePauseClick = () => {
@@ -30,29 +28,28 @@ const ArtistDetails = () => {
   };
 
   const handlePlayClick = (song, i) => {
-    console.log(song, artistData);
-
     dispatch(
       setActiveSong({
         song: song?.attributes ? song.attributes : song,
-        data: artistData.data,
+        data: artistSongs?.data,
         i,
-      })
+      }),
     );
     dispatch(playPause(true));
   };
 
   return (
-    <div className='flex flex-col'>
-      <DetailsHeader artistId={artistId} artistData={artistData.data[0]} />
+    <div className="flex flex-col">
+      <DetailsHeader artistId={artistId} artistData={artistData?.data[0]} />
 
       <RelatedSongs
-        data={artistSongs.data}
+        data={artistSongs?.data}
         artistId={artistId}
         isPlaying={isPlaying}
         activeSong={activeSong}
         handlePauseClick={handlePauseClick}
         handlePlayClick={handlePlayClick}
+        songDetails={artistData?.data[0]}
       />
     </div>
   );

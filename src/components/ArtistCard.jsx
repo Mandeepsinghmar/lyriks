@@ -5,18 +5,16 @@ const ArtistCard = ({ track }) => {
   const navigate = useNavigate();
   return (
     <div
-      className='flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'
-      onClick={() =>
-        navigate(`/artists/${track?.relationships.artists.data[0].id}`)
-      }
+      className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
+      onClick={() => navigate(`/artists/${track?.artists[0].adamid}`)}
     >
       <img
-        alt='song_img'
-        src={track?.attributes.artwork.url}
-        className='w-full h-56 rounded-lg'
+        alt="song_img"
+        src={track?.images?.background}
+        className="w-full h-56 rounded-lg"
       />
-      <p className='mt-4 font-semibold text-lg text-white truncate'>
-        {track?.attributes.artistName}
+      <p className="mt-4 font-semibold text-lg text-white truncate">
+        {track?.subtitle}
       </p>
     </div>
   );

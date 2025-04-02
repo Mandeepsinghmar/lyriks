@@ -18,17 +18,17 @@ const SongCard = ({ song, isPlaying, activeSong, data, i, isSearch }) => {
         song: song?.attributes ? song.attributes : song,
         data,
         i,
-      })
+      }),
     );
     dispatch(playPause(true));
   };
   return (
-    <div className='flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
-      <div className='relative w-full h-56 group'>
+    <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
+      <div className="relative w-full h-56 group">
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            (activeSong?.title || activeSong?.name) ===
-            (song?.attributes?.name || song?.title)
+            (activeSong?.title || activeSong?.name)
+            === (song?.attributes?.name || song?.title)
               ? 'flex bg-black bg-opacity-70'
               : 'hidden'
           }`}
@@ -43,19 +43,19 @@ const SongCard = ({ song, isPlaying, activeSong, data, i, isSearch }) => {
           />
         </div>
         <img
-          alt='song_img'
+          alt="song_img"
           src={song?.attributes?.artwork.url || song.images.coverart}
-          className='w-full h-full rounded-lg'
+          className="w-full h-full rounded-lg"
         />
       </div>
 
-      <div className='mt-4 flex flex-col'>
-        <p className='font-semibold text-lg text-white truncate'>
+      <div className="mt-4 flex flex-col">
+        <p className="font-semibold text-lg text-white truncate">
           <Link to={`/songs/${song?.id || song?.key}`}>
             {song?.attributes?.name || song.title}
           </Link>
         </p>
-        <p className='text-sm truncate text-gray-300 mt-1'>
+        <p className="text-sm truncate text-gray-300 mt-1">
           {song?.relationships?.artists ? (
             <Link
               to={

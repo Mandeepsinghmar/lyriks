@@ -15,17 +15,17 @@ export const shazamCoreApi = createApi({
   }),
   endpoints: (builder) => ({
     getTopCharts: builder.query({
-      query: () => `/search?term=rock&limit=50&offset=5`,
+      query: (offset) => `/search?term=rock&limit=50&offset=${offset}`,
     }),
     getSongsByGenre: builder.query({
       query: (genre) => `/search?term=${genre}&limit=50`,
     }),
     getSongsByCountry: builder.query({
-      query: (countryCode) =>
-        `/v1/charts/country?country_code=${countryCode}&limit=50`,
+      query: (countryCode) => `/search?term=${countryCode}&limit=50`,
     }),
     getSongsBySearch: builder.query({
-      query: (searchTerm) => `/search?term=${searchTerm}&limit=50`,
+      query: (searchTerm, offset) =>
+        `/search?term=${searchTerm}&limit=50&offset=${offset}`,
     }),
     getArtistDetails: builder.query({
       query: (artistId) => `/artists/get-details?id=${artistId}`,
@@ -33,8 +33,11 @@ export const shazamCoreApi = createApi({
     getArtistTopSongs: builder.query({
       query: (artistId) => `/artists/get-top-songs?id=${artistId}`,
     }),
-    getSongDetails: builder.query({
+    getSongId: builder.query({
       query: ({ songid }) => `/shazam-songs/get-details?id=${songid}`,
+    }),
+    getSongDetails: builder.query({
+      query: ({ songid }) => `/songs/v2/get-details?id=${songid}`,
     }),
 
     getSongRelated: builder.query({
@@ -50,6 +53,7 @@ export const {
   useGetSongsBySearchQuery,
   useGetArtistDetailsQuery,
   useGetSongDetailsQuery,
+  useGetSongIdQuery,
   useGetSongDetailsV1Query,
   useGetArtistTopSongsQuery,
   useGetSongRelatedQuery,

@@ -18,30 +18,30 @@ const CountryTracks = () => {
       .get(
         `https://geo.ipify.org/api/v2/country?apiKey=${
           import.meta.env.VITE_GEO_API_KEY
-        }`
+        }`,
       )
       .then((res) => setCountry(res?.data?.location.country))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   }, [country]);
 
-  if (!data && !error) return <Loader title='Loading Songs around you...' />;
+  if (!data && !error) return <Loader title="Loading Songs around you..." />;
 
   if (error && country !== '') return <Error />;
   return (
-    <div className='flex flex-col'>
-      <h2 className='font-bold text-3xl text-white text-left mt-4 mb-10'>
-        Around you <span className='font-black'>{country}</span>
+    <div className="flex flex-col">
+      <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">
+        Around you <span className="font-black">{country}</span>
       </h2>
 
-      <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
-        {data?.map((song, i) => (
+      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
+        {data?.tracks?.hits?.map((song, i) => (
           <SongCard
-            key={song.id}
-            song={song}
+            key={song.track.id}
+            song={song.track}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            data={data}
+            data={data?.tracks?.hits}
             i={i}
           />
         ))}
